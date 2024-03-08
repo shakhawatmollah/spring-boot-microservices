@@ -3,12 +3,14 @@ package com.shakhawat.mollah.service;
 import com.shakhawat.mollah.dto.InventoryResponse;
 import com.shakhawat.mollah.dto.OrderItemDto;
 import com.shakhawat.mollah.dto.OrderRequest;
+import com.shakhawat.mollah.event.OrderPlacedEvent;
 import com.shakhawat.mollah.model.Order;
 import com.shakhawat.mollah.model.OrderItem;
 import com.shakhawat.mollah.repository.OrderRepository;
 import io.micrometer.tracing.Span;
 import io.micrometer.tracing.Tracer;
 import lombok.RequiredArgsConstructor;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -24,10 +26,9 @@ import java.util.UUID;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-
     private final WebClient.Builder webClientBuilder;
-
     private final Tracer tracer;
+    private final KafkaTemplate<String, OrderPlacedEvent> kafkaTemplate;
 
     public String placeOrder(OrderRequest orderRequest) {
         Order order = new Order();
@@ -59,6 +60,7 @@ public class OrderService {
 
             if (Boolean.TRUE.equals(result)) {
                 orderRepository.save(order);
+                kafkaTemplate.send("notificationTopic", new OrderPlacedEvent(order.getOrderNumber()));
                 return "Order Placed Successfully";
             } else {
                 return "Product is not in stock, please try again later";
