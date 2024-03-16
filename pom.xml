@@ -80,8 +80,18 @@
                     <from>
                         <image>eclipse-temurin:17.0.10_7-jre</image>
                     </from>
-                    <to><image>registry.hub.docker.com/shakhawat/${artifactId}</image></to>
+                    <to>
+                        <image>registry.hub.docker.com/shakhawat/${artifactId}</image>
+                    </to>
                 </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>dockerBuild</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
