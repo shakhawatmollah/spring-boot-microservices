@@ -1,0 +1,12 @@
+docker run -p 8181:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:23.0.6 start-dev
+docker run -d -p 9411:9411 openzipkin/zipkin
+docker images
+docker run -d 7845344781b3
+mvn clean compile jib:build
+docker compose up -d
+docker compose down
+docker logs -f broker
+docker logs -f order-service
+docker logs -f api-gateway
+docker logs -f product-service
+docker logs -f notification-service
