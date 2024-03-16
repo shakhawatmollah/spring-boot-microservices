@@ -10,3 +10,4 @@ docker logs -f order-service
 docker logs -f api-gateway
 docker logs -f product-service
 docker logs -f notification-service
+docker run -d image-id [for postgres/mysql run]
