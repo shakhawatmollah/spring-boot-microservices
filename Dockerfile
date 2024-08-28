@@ -2,7 +2,7 @@ FROM openjdk:17-jdk
 
 WORKDIR /app
 
-COPY target/spring-boot-microservices-1.0.0.jar /app/microserviceapp.jar
+COPY target/spring-boot-microservices-1.0-SNAPSHOT.jar /app/microserviceapp.jar
 
 EXPOSE 8080
 

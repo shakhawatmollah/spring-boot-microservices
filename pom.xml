@@ -14,8 +14,7 @@
     <groupId>com.shakhawat.mollah</groupId>
     <artifactId>spring-boot-microservices</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
-    <name>spring-boot-microservices</name>
+    <version>1.0-SNAPSHOT</version>
     <modules>
         <module>product-service</module>
         <module>order-service</module>
