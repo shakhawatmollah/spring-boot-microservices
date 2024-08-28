@@ -28,7 +28,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          dockerfile: Dockerfile.yml
+          dockerfile: Dockerfile
           push: false
           tags: shakhawat/demo:latest
       - name: Login to Docker Hub
@@ -41,6 +41,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          dockerfile: Dockerfile.yml
+          dockerfile: Dockerfile
           push: true
           tags: shakhawat/demo:latest
