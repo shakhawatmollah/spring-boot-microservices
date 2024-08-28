@@ -28,7 +28,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          dockerfile: docker-compose.yml
+          file: ./docker-compose.yml
           push: false
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/microservices:latest
       - name: Login to Docker Hub
@@ -41,6 +41,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          dockerfile: docker-compose.yml
+          file: ./docker-compose.yml
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/microservices:latest
